@@ -8,7 +8,7 @@ Lancer le back (sans BDD)
  `node src/serveur/servNoBDD.js`
  
 Lancer le back (avec BDD)
- `node src/serveur/servNoBDD.js`
+ `node src/serveur/serv.js`
 
 Conf mysql necessaire : 
 utilisateur `annuaire`
