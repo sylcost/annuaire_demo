@@ -1,8 +1,9 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { FormControl, FormGroup, ControlLabel, Button, Alert } from 'react-bootstrap';
+import { FormControl, FormGroup, ControlLabel, Button } from 'react-bootstrap';
 import store from '../store/Store';
 import {creerContact} from '../rest/AppelsRest';
+import { ToastContainer } from 'react-toastify';
 
 // Formulaire de saisie d'un nouveau contact
 export const NouveauContact = observer(() => {
@@ -10,9 +11,7 @@ export const NouveauContact = observer(() => {
     // On affiche ce composant uniquement si le bouton Nouveau est clique.
     let style = store.action === 'nouveau' ?  {display: 'inline'} : {display: 'none'};
 
-    let styleAlert = store.restRetour !== '' ?  {} : {display: 'none'}
-
-    return (<div style={style}>
+return (<div style={style}>
                 <FormGroup validationState={store.nomManquant}>
                     <ControlLabel>Nom</ControlLabel>
                     <FormControl 
@@ -72,9 +71,7 @@ export const NouveauContact = observer(() => {
                         onChange={(e) => store.changeNaissanceNouveau(e)} />
                 </FormGroup>
                 <Button className='btn btn-primary' onClick={() => ajouterContact()} >Ajouter</Button>
-                <Alert bsStyle="warning" style={styleAlert}>
-                    {store.restRetour}
-                </Alert>
+                <ToastContainer />
             </div>
     );
 

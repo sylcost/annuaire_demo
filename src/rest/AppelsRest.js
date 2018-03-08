@@ -1,5 +1,6 @@
 import { applySnapshot } from "mobx-state-tree";
 import store from '../store/Store';
+import { toast } from 'react-toastify';
 
 var header = {
     'Accept': 'application/json',
@@ -16,10 +17,16 @@ export function supprimerContact(contact) {
     .then(data=> {
         console.log('data:'+JSON.stringify(data));
         initListeContacts();
+        toast.success(data.message, { // Toast
+            position: toast.POSITION.BOTTOM_RIGHT
+          });
     })
     .catch((ex) => {
         console.log('error supprimerContact():' + ex);
         console.log(ex.stack);
+        toast.error('Error supprimerContact():' + ex, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          });
     });
 }
 
@@ -40,6 +47,9 @@ export function initListeContacts() {
     .catch((ex) => {
         console.log('error initListeContacts():' + ex);
         console.log(ex.stack);
+        toast.error('Error initListeContacts():' + ex, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          });
     });
 }
 
@@ -63,10 +73,16 @@ export function modifierContact(contact) {
     .then(response => response.json())
     .then(data=> {
         initListeContacts();
+        toast.success(data.message, { // Toast
+            position: toast.POSITION.BOTTOM_RIGHT
+          });
     })
     .catch((ex) => {
         console.log('error modifierContact():' + ex);
         console.log(ex.stack);
+        toast.error('Error modifierContact():' + ex, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          });
     });
 }
 
@@ -82,11 +98,16 @@ export function creerContact() {
     .then(response => response.json())
     .then(data=> {
         store.resetFormulaire();
-        store.setRestRetour(data.message);
+        toast.success(data.message, { // Toast
+            position: toast.POSITION.BOTTOM_RIGHT
+          });
     })
     .catch((ex) => {
-        console.log('error creerContact():' + ex);
+        console.log('Error creerContact():' + ex);
         console.log(ex.stack);
+        toast.error('Error creerContact():' + ex, {
+            position: toast.POSITION.BOTTOM_RIGHT
+          });
     });
 }
 

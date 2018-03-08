@@ -17,8 +17,7 @@ const Store = types.model("Store", {
   nouveauContact: types.optional(Contact, {}), // Form creation
   modifContact: types.optional(Contact, {}), // Form modif
   action: types.optional(types.string, ''), // ajout/visu en fonction du bouton selectionne
-  modalId: types.optional(types.number, -1), // id de la popup modif a ouvrir
-  restRetour: types.optional(types.string, '') // affichage du retour REST de creation de contact
+  modalId: types.optional(types.number, -1) // id de la popup modif a ouvrir
 }).actions((self) => ({
     
     // Methodes pour le form nouveau contact
@@ -59,8 +58,6 @@ const Store = types.model("Store", {
     // Clic sur un bouton Nouveau / Liste
     changeAction(action) {
         self.action = action;
-        // On supprime le message de retour de l'appel rest de creation
-        self.restRetour = '';
     },
     // Validation du nouveau contact
     ajouterContact() {
@@ -84,7 +81,6 @@ const Store = types.model("Store", {
         self.nouveauContact.telephone = '';
         self.nouveauContact.adresse = '';
         self.nouveauContact.civilite = '';
-        self.restRetour = '';
     },
     // Ouvre la popup de modif, alimente le form avec les info du contact selectionne. "Nom" non modifiable.
     popupModifierContact(contact) {
@@ -97,9 +93,6 @@ const Store = types.model("Store", {
     },
     hideModal() {
         self.modalId = -1;
-    },
-    setRestRetour(message) {
-        self.restRetour = message;
     }
 
 })).views((self) => ({
