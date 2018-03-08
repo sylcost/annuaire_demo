@@ -1,6 +1,8 @@
 Installation
 ### `npm install`
 
-Run
-### `npm start` (pour le front)
-### `node src/serveur/servNoBDD.js` (pour le back)
+Lancer le front
+### `npm start` 
+
+Lancer le back
+### `node src/serveur/servNoBDD.js`
