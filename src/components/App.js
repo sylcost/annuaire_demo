@@ -5,6 +5,7 @@ import {ListeContacts}  from './ListeContacts';
 import {NouveauContact}  from './NouveauContact';
 import store from '../store/Store';
 import {initListeContacts} from '../rest/AppelsRest';
+import { ToastContainer } from 'react-toastify';
 
 export const App = observer(() => {
 
@@ -33,6 +34,7 @@ export const App = observer(() => {
           <div className='container'>
             <ListeContacts />
             <NouveauContact />
+            <ToastContainer />
           </div>
         </div>
       </div>

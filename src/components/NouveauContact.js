@@ -3,7 +3,6 @@ import { observer } from 'mobx-react';
 import { FormControl, FormGroup, ControlLabel, Button } from 'react-bootstrap';
 import store from '../store/Store';
 import {creerContact} from '../rest/AppelsRest';
-import { ToastContainer } from 'react-toastify';
 
 // Formulaire de saisie d'un nouveau contact
 export const NouveauContact = observer(() => {
@@ -71,7 +70,6 @@ return (<div style={style}>
                         onChange={(e) => store.changeNaissanceNouveau(e)} />
                 </FormGroup>
                 <Button className='btn btn-primary' onClick={() => ajouterContact()} >Ajouter</Button>
-                <ToastContainer />
             </div>
     );
 
