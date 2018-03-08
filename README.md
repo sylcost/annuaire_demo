@@ -6,3 +6,5 @@ Lancer le front
 
 Lancer le back
  `node src/serveur/servNoBDD.js`
+
+Accès via `http://localhost:3000`
