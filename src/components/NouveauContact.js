@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { FormControl, FormGroup, ControlLabel, Button } from 'react-bootstrap';
 import store from '../store/Store';
-import {creerContact} from '../rest/AppelsRest';
+import {validerFormulaireCreation} from '../commun/validForm';
 
 // Formulaire de saisie d'un nouveau contact
 export const NouveauContact = observer(() => {
@@ -14,26 +14,22 @@ return (<div style={style}>
                 <FormGroup validationState={store.nomManquant}>
                     <ControlLabel>Nom</ControlLabel>
                     <FormControl 
-                        id="inputNom"
                         type="text"
-                        label="Text"
-                        placeholder="Enter text"
+                        placeholder="Nom"
                         value={store.nouveauContact.nom} 
                         onChange={(e) => store.changeNomNouveau(e)}/>
                 </FormGroup>
                 <FormGroup >
                     <ControlLabel>Prenom</ControlLabel>
                     <FormControl 
-                        id="inputPrenom"
                         type="text"
-                        label="Text"
-                        placeholder="Enter text"
+                        placeholder="Prenom"
                         value={store.nouveauContact.prenom} 
                         onChange={(e) => store.changePrenomNouveau(e)} />
                 </FormGroup>
                 <FormGroup >
                     <ControlLabel>Civilité</ControlLabel>
-                    <FormControl componentClass="select" placeholder="bobbby" id="inputCivilite" value={store.nouveauContact.civilite} onChange={(e) => store.changeCiviliteNouveau(e)}>
+                    <FormControl componentClass="select" id="inputCivilite" value={store.nouveauContact.civilite} onChange={(e) => store.changeCiviliteNouveau(e)}>
                         <option ></option>
                         <option >H</option>
                         <option >F</option>
@@ -42,30 +38,24 @@ return (<div style={style}>
                 <FormGroup >
                     <ControlLabel>Adresse</ControlLabel>
                     <FormControl 
-                        id="inputAdresse"
                         type="text"
-                        label="Text"
-                        placeholder="Enter text"
+                        placeholder="Adresse"
                         value={store.nouveauContact.adresse} 
                         onChange={(e) => store.changeAdresseNouveau(e)} />
                 </FormGroup>
                 <FormGroup >
                     <ControlLabel>Telephone</ControlLabel>
                     <FormControl 
-                        id="inputTelephone"
                         type="text"
-                        label="Text"
-                        placeholder="Enter text"
+                        placeholder="Telephone"
                         value={store.nouveauContact.telephone}
                         onChange={(e) => store.changeTelephoneNouveau(e)} />
                 </FormGroup>
                 <FormGroup >
                     <ControlLabel>Naissance</ControlLabel>
                     <FormControl 
-                        id="inputNaissance"
                         type="text"
-                        label="Text"
-                        placeholder="Enter text"
+                        placeholder="Format JJ/MM/AAAA"
                         value={store.nouveauContact.naissance}
                         onChange={(e) => store.changeNaissanceNouveau(e)} />
                 </FormGroup>
@@ -76,7 +66,7 @@ return (<div style={style}>
     function ajouterContact() {
         // Si le nom n'est pas renseigne on ne fait rien
         if (store.nouveauContact.nom != null && store.nouveauContact.nom !== '') {
-            creerContact();
+            validerFormulaireCreation(store.nouveauContact.nom);
         }
     }
 

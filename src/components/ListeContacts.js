@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { Table, Button, Glyphicon } from 'react-bootstrap';
 import store from '../store//Store';
-import {supprimerContact} from '../rest/AppelsRest';
+import {supprimerContact} from '../rest/appelsRest';
 import {ModifContact} from './ModifContact';
 
 
@@ -20,8 +20,8 @@ export const ListeContacts = observer(() => {
 					<td>{contact.prenom}</td>
 					<td>{contact.civilite}</td>
 					<td>{contact.adresse}</td>
-					<td>{contact.naissance}</td>
 					<td>{contact.telephone}</td>
+					<td>{contact.formatNaissance}</td>
 					<td>
 						<Button onClick={() => supprimerContact(contact)}>
 							<Glyphicon glyph="trash" />
@@ -45,8 +45,8 @@ export const ListeContacts = observer(() => {
 					<th>Prenom</th>
 					<th>Civilité</th>
 					<th>Adresse</th>
+					<th>Téléphone</th>
 					<th>Naissance</th>
-					<th>Telephone</th>
 					<th>Actions</th>
                 </tr>
             </thead>

@@ -9,8 +9,12 @@ const Contact = types.model("Contact", {
     adresse: types.optional(types.string, ''),
     telephone: types.optional(types.string, ''),
     naissance: types.optional(types.string, '')
-});
-
+}).views((self) => ({
+    // Formattage de la date pour la lisibilite
+    get formatNaissance() {
+        return !!self.naissance && self.naissance.length >=10 ? self.naissance.substring(0, 10) : '';
+    }
+}));
 
 const Store = types.model("Store", {
   contacts: types.array(Contact),
@@ -59,20 +63,6 @@ const Store = types.model("Store", {
     changeAction(action) {
         self.action = action;
     },
-    // Validation du nouveau contact
-    ajouterContact() {
-        let contact = Contact.create({
-            id: 0,
-            nom: self.nouveauContact.nom,
-            prenom: self.nouveauContact.prenom,
-            naissance: self.nouveauContact.naissance,
-            adresse: self.nouveauContact.adresse,
-            civilite: self.nouveauContact.civilite,
-            telephone: self.nouveauContact.telephone
-        });
-        self.contacts.push(contact);
-        self.resetFormulaire();
-    },
     // Reset le form du nouveau contact
     resetFormulaire() {
         self.nouveauContact.nom = '';
@@ -86,10 +76,10 @@ const Store = types.model("Store", {
     popupModifierContact(contact) {
         self.modalId = contact.id;
         self.modifContact.prenom = contact.prenom;
-        self.modifContact.naissance = contact.naissance;
         self.modifContact.telephone = contact.telephone;
         self.modifContact.adresse = contact.adresse;
         self.modifContact.civilite = contact.civilite;
+        self.modifContact.naissance = contact.formatNaissance;
     },
     hideModal() {
         self.modalId = -1;
