@@ -33,7 +33,7 @@ export const ListeContacts = observer(() => {
 				</div>
 			</Popover>
 		  );
-		return (<tr key={contact.id} onClick={() => console.log('click')}>
+		return (<tr key={contact.id}>
 					<td>{contact.id}</td>
 					<td>{contact.nom}</td>
 					<td>{contact.prenom}</td>
