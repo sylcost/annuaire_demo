@@ -49,7 +49,7 @@ app.post('/creerContact', function(req, res){
 
 app.put('/modifierContact/:id', function(req, res){
     let contact = listeContacts.find(contact => contact.id == req.params.id);
-    let message = 'Le contact '+req.params.id+' a bien ete modifie';
+    let reponse = {message: 'Le contact '+req.params.id+' a bien ete modifie'};
     if (!!contact) {
         contact.prenom = req.body.prenom;
         contact.adresse = req.body.adresse;
@@ -57,20 +57,20 @@ app.put('/modifierContact/:id', function(req, res){
         contact.civilite = req.body.civilite;
         contact.telephone = req.body.telephone;
     } else {
-        message = 'impossible de trouver le contact id='+req.params.id;
+        reponse = {erreur: 'impossible de trouver le contact id='+req.params.id};
     }
-    res.json({'message': message});
+    res.json(reponse);
 });
 
 app.delete('/supprimerContact/:id', function(req, res){
     let contact = listeContacts.find(contact => contact.id == req.params.id);
-    let message = 'Le contact '+req.params.id+' a bien ete supprime';
+    let reponse = {message: 'Le contact '+req.params.id+' a bien ete supprime'};
     if (!!contact) {
         // Suppression
         listeContacts = listeContacts.filter(contact => contact.id != req.params.id);
     } else {
-        message = 'impossible de trouver le contact id='+req.params.id;
+        reponse = {erreur: 'impossible de trouver le contact id='+req.params.id};
     }
    
-    res.json({'message': message});
+    res.json(reponse);
 });
