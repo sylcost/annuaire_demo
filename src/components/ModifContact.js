@@ -50,7 +50,7 @@ export const ModifContact = observer(({contact}) => {
                         <ControlLabel>Naissance</ControlLabel>
                         <FormControl 
                             type="text"
-                            placeholder="Format AAAA-MM-JJ"
+                            placeholder="Format JJ/MM/AAAA"
                             value={store.modifContact.naissance}
                             onChange={(e) => store.changeNaissanceModif(e)} />
                     </FormGroup>

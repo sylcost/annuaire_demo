@@ -59,15 +59,8 @@ return (<div style={style}>
                         value={store.nouveauContact.naissance}
                         onChange={(e) => store.changeNaissanceNouveau(e)} />
                 </FormGroup>
-                <Button className='btn btn-primary' onClick={() => ajouterContact()} >Ajouter</Button>
+                <Button className='btn btn-primary' onClick={() => validerFormulaireCreation(store.nouveauContact.nom)} >Ajouter</Button>
             </div>
     );
-
-    function ajouterContact() {
-        // Si le nom n'est pas renseigne on ne fait rien
-        if (store.nouveauContact.nom != null && store.nouveauContact.nom !== '') {
-            validerFormulaireCreation(store.nouveauContact.nom);
-        }
-    }
 
 });

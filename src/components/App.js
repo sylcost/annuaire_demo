@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Grid, Navbar, Jumbotron, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Grid, Navbar, Jumbotron, ToggleButtonGroup, ToggleButton, Nav, NavItem } from 'react-bootstrap';
 import {ListeContacts}  from './ListeContacts';
 import {NouveauContact}  from './NouveauContact';
 import store from '../store/Store';
@@ -12,40 +12,36 @@ export const App = observer(() => {
     return (
       <div>
         <Navbar inverse fixedTop>
-          <Grid>
-            <Navbar.Header>
-              <Navbar.Brand>
-                <a href="/">React App</a>
-              </Navbar.Brand>
-              <Navbar.Toggle />
-            </Navbar.Header>
-          </Grid>
+          <Nav>
+            <NavItem onClick={() => changeAction('nouveau')}>Creation</NavItem>
+            <NavItem onClick={() => changeAction('liste')}>Visualisation</NavItem>
+          </Nav>
         </Navbar>
         <Jumbotron>
           <Grid>
             <h1>ANNUAIRE</h1>
           </Grid>
         </Jumbotron>
-        <div className='container'>
+        <Grid bsClass='container'>
           <ToggleButtonGroup name='action' bsSize="large"  defaultValue={store.action} onChange={(a) => changeAction(a)} justified >
             <ToggleButton bsStyle="primary" bsSize="large" value='nouveau' >Nouveau</ToggleButton>
             <ToggleButton bsStyle="primary" bsSize="large" value='liste' >Liste</ToggleButton>
           </ToggleButtonGroup >
-          <div className='container'>
+          <Grid bsClass='container'>
             <ListeContacts />
             <NouveauContact />
             <ToastContainer />
-          </div>
-        </div>
+          </Grid>
+        </Grid>
       </div>
     );
 
-    // Clic sur un bouton
-  function changeAction(a) {
-    store.changeAction(a);
-    if (a === 'liste') {
-      initListeContacts();
+    // Clic sur un bouton ou sur le menu
+    function changeAction(a) {
+      store.changeAction(a);
+      if (a === 'liste') {
+        initListeContacts();
+      }
     }
-  }
 
 });
