@@ -9,12 +9,7 @@ const Contact = types.model("Contact", {
     adresse: types.optional(types.string, ''),
     telephone: types.optional(types.string, ''),
     naissance: types.optional(types.string, '')
-}).views((self) => ({
-    // Formattage de la date pour la lisibilite
-    get formatNaissance() {
-        return !!self.naissance && self.naissance.length >=10 ? self.naissance.substring(0, 10) : '';
-    }
-}));
+});
 
 const Store = types.model("Store", {
   contacts: types.array(Contact),
@@ -79,7 +74,7 @@ const Store = types.model("Store", {
         self.modifContact.telephone = contact.telephone;
         self.modifContact.adresse = contact.adresse;
         self.modifContact.civilite = contact.civilite;
-        self.modifContact.naissance = contact.formatNaissance;
+        self.modifContact.naissance = contact.naissance;
     },
     hideModal() {
         self.modalId = -1;

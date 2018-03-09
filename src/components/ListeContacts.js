@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import { Table, Button, Glyphicon, Popover, OverlayTrigger, Label } from 'react-bootstrap';
+import { Table, Button, Glyphicon, Popover, OverlayTrigger, Label, Collapse, Well } from 'react-bootstrap';
 import store from '../store//Store';
 import {supprimerContact} from '../rest/appelsRest';
 import {ModifContact} from './ModifContact';
@@ -8,9 +8,6 @@ import {ModifContact} from './ModifContact';
 
 // Tableau representant tous les contacts, avec une fenetre modal pour la modification de chaque contact.
 export const ListeContacts = observer(() => {
-
-	// On affiche ce composant uniquement si le bouton Liste est clique.
-	let style = store.action === 'liste' ?  {display: 'inline'} : {display: 'none'}
 
 	// Chaque ligne du tableau, avec leur fenetre modal
 	let lignes = store.contacts.map(contact => {
@@ -36,14 +33,14 @@ export const ListeContacts = observer(() => {
 				</div>
 			</Popover>
 		  );
-		return (<tr key={contact.id}>
+		return (<tr key={contact.id} onClick={() => console.log('click')}>
 					<td>{contact.id}</td>
 					<td>{contact.nom}</td>
 					<td>{contact.prenom}</td>
 					<td>{contact.civilite}</td>
 					<td>{contact.adresse}</td>
 					<td>{contact.telephone}</td>
-					<td>{contact.formatNaissance}</td>
+					<td>{contact.naissance}</td>
 					<td>
 						<Button onClick={() => supprimerContact(contact)}>
 							<Glyphicon glyph='trash' />
@@ -64,23 +61,30 @@ export const ListeContacts = observer(() => {
 
 	// Affichage des noms de colonnes et des lignes
 	return (
-		<Table striped condensed hover style={style}>
-            <thead>
-                <tr>
-					<th>#</th>
-					<th>Nom</th>
-					<th>Prenom</th>
-					<th>Civilité</th>
-					<th>Adresse</th>
-					<th>Téléphone</th>
-					<th>Naissance</th>
-					<th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-				{lignes}
-            </tbody>
-        </Table>
+		<Collapse in={store.action === 'liste'}>
+          <div>
+            <Well>
+				<Table striped condensed hover>
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Nom</th>
+							<th>Prenom</th>
+							<th>Civilité</th>
+							<th>Adresse</th>
+							<th>Téléphone</th>
+							<th>Naissance</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{lignes}
+					</tbody>
+				</Table>
+			</Well>
+          </div>
+        </Collapse>
+		
 	);
 
 });

@@ -27,7 +27,7 @@ export const App = observer(() => {
             <ToggleButton bsStyle="primary" bsSize="large" value='nouveau' >Nouveau</ToggleButton>
             <ToggleButton bsStyle="primary" bsSize="large" value='liste' >Liste</ToggleButton>
           </ToggleButtonGroup >
-          <Grid bsClass='container'>
+          <Grid bsClass='container-fluid'>
             <ListeContacts />
             <NouveauContact />
             <ToastContainer />
