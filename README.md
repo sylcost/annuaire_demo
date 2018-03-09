@@ -14,7 +14,7 @@ Conf mysql necessaire :
 utilisateur `annuaire`
 mdp `annuaire`
 schema `sannuaire`
-doit avoir les droits `CREATE DROP SELECT UPDATE DELETE` sur le schema `sannuaire`.
+doit avoir les droits `CREATE DROP SELECT INSERT UPDATE DELETE` sur le schema `sannuaire`.
 A modifier éventuellement dans src/serveur/serv.js (~ l.23)
  
  
